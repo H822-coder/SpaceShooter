@@ -1,0 +1,289 @@
+/* ═══════════════════════════════════════════════════════
+   Space Ka Scene — Space Shooter
+   Premium CSS: Glassmorphism, Animations, Typography
+   ═══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+  --bg-deep: #04060e;
+  --glass-bg: rgba(10, 14, 30, 0.72);
+  --glass-border: rgba(100, 160, 255, 0.12);
+  --glass-highlight: rgba(255, 255, 255, 0.04);
+  --blue: #4499ff;
+  --green: #33dd66;
+  --red: #ff4466;
+  --gold: #ffcc33;
+  --purple: #bb55ff;
+  --cyan: #44ddff;
+  --text: #e8ecf4;
+  --text-dim: rgba(255,255,255,0.45);
+  --radius: 12px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%; height: 100%;
+  background: var(--bg-deep);
+  display: flex; justify-content: center; align-items: center;
+  overflow: hidden;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  color: var(--text);
+  cursor: default;
+}
+
+/* ── Canvas Container — fills entire viewport ────── */
+#game-wrap {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-deep);
+  object-fit: contain;
+}
+
+/* ── Pause Overlay (HTML overlay for glassmorphism) ── */
+#pause-overlay {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  z-index: 10;
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  background: rgba(4, 6, 14, 0.55);
+  animation: fadeIn 0.25s ease-out;
+}
+
+#pause-overlay.visible { display: flex; }
+
+#pause-overlay h1 {
+  font-family: 'Orbitron', monospace;
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: 6px;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+  text-shadow: none;
+}
+
+/* ── Stats Box inside pause ──────────────────────── */
+.stats-box {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 16px 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 32px;
+  margin-bottom: 12px;
+  animation: slideUp 0.3s ease-out;
+}
+
+.stats-box .stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.stats-box .stat-icon { font-size: 16px; }
+.stats-box .stat-label { color: var(--text-dim); }
+.stats-box .stat-value { font-weight: 700; color: #fff; margin-left: auto; }
+
+/* ── Buttons (HTML for pause menu) ───────────────── */
+.btn {
+  width: 200px;
+  padding: 12px 0;
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  background: var(--glass-bg);
+  color: var(--text);
+  font-family: 'Orbitron', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.06));
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.btn:hover {
+  border-color: var(--blue);
+  background: rgba(68, 153, 255, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(68, 153, 255, 0.15);
+}
+
+.btn:hover::before { opacity: 1; }
+
+.btn:active { transform: translateY(0); }
+
+.btn.accent {
+  border-color: var(--green);
+  background: rgba(51, 221, 102, 0.1);
+}
+.btn.accent:hover {
+  border-color: var(--green);
+  background: rgba(51, 221, 102, 0.18);
+  box-shadow: 0 6px 24px rgba(51, 221, 102, 0.15);
+}
+
+.btn.danger {
+  border-color: var(--red);
+  background: rgba(255, 68, 102, 0.08);
+}
+.btn.danger:hover {
+  border-color: var(--red);
+  background: rgba(255, 68, 102, 0.15);
+  box-shadow: 0 6px 24px rgba(255, 68, 102, 0.15);
+}
+
+/* ── Tutorial Overlay ────────────────────────────── */
+#tutorial-overlay {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(4, 6, 14, 0.6);
+  animation: fadeIn 0.25s ease-out;
+}
+
+#tutorial-overlay.visible { display: flex; }
+
+.tutorial-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 32px 40px;
+  max-width: 520px;
+  width: 90%;
+  text-align: center;
+  animation: slideUp 0.35s ease-out;
+}
+
+.tutorial-card h2 {
+  font-family: 'Orbitron', monospace;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--cyan);
+}
+
+.tutorial-card .step-num {
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.tutorial-card p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 16px;
+}
+
+.tutorial-card .keys {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.key-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  padding: 4px 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.06);
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  animation: keyPulse 2s ease-in-out infinite;
+}
+
+.tutorial-nav {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.tutorial-nav .btn { width: 130px; font-size: 11px; padding: 10px 0; }
+
+/* Progress dots */
+.tutorial-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.tutorial-dots .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  transition: all 0.3s ease;
+}
+
+.tutorial-dots .dot.active {
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+  transform: scale(1.3);
+}
+
+.tutorial-dots .dot.done { background: var(--green); }
+
+/* ── Keyframe Animations ─────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes keyPulse {
+  0%, 100% { border-color: rgba(255,255,255,0.2); box-shadow: none; }
+  50% { border-color: var(--cyan); box-shadow: 0 0 10px rgba(68, 221, 255, 0.3); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
