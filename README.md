@@ -1,8 +1,6 @@
 🚀 SPACE KA SCENE
 A fast, juicy 2D arcade space-shooter built from scratch in vanilla JavaScript and HTML5 Canvas — no frameworks, no engines, just code.
 
-🏆 1st Place Winner — Build-a-Game Challenge, INNOVATEX 4.0 International Tech Fest, Presidency University, Bangalore (April 2026).
-
 Designed, coded, and shipped end-to-end inside a strict 2-hour build window.
 
 ✨ Features
@@ -50,14 +48,8 @@ CSS3 for the page shell
     ├── save.js         # Persistent high-scores & lifetime stats
     └── game.js         # Core gameplay: players, enemies, lasers, physics
     
-▶️ Running Locally
-Because the game uses ES6 import modules, browsers won't load it from file://. You need a tiny local server. Pick whichever you like:
-
-Python (already installed on most systems):
-
-cd Build-A-Game-Challenge-INNOVATEX-4-Presidency-University
-python -m http.server 8000
-Then open http://localhost:8000.
+Procedure to run the game: 
+After downloading and installing all the requistics and file. Go to the main HTML file "Index.html" Switch to "Open live server". The game will be on your screen.
 
 Node:
 
@@ -77,17 +69,9 @@ Shoot	Enter
 Pulse	Right Shift
 Global	Key
 Pause	ESC
-👥 Team
-Built by 4 developers in 2 hours at INNOVATEX 4.0:
 
-Member	GitHub
-Shido (Voiid)	@official-imvoiid
-Saim Tabbani	@Saimtabbani
-Rifah Alam	@rifahalam123
-Harsh Pillai	@H822-coder
-🏆 Achievements
-🥇 1st Place — Build-a-Game Challenge, INNOVATEX 4.0 (April 2026)
-🎯 Delivered a fully playable, autonomous prototype within the 2-hour limit
-🏗 Modular architecture with persistent stats and multiple game modes
+
+
+
 📜 License
 This project is licensed under the MIT License — see the LICENSE file for details.
