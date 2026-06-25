@@ -6,18 +6,30 @@ A fast, juicy 2D arcade space-shooter built from scratch in vanilla JavaScript a
 Designed, coded, and shipped end-to-end inside a strict 2-hour build window.
 
 ✨ Features
-🎮 Single-player & 2-player co-op modes
-👾 Three event challenges — Meteor Storm, Boss Rush, Pilot Training
-💥 Particle effects, shockwaves, screen shake, hit flash, score popups
-⚡ Power-ups, escort mini-ships, and antigravity physics
-🧠 Carrier (boss) ships with unique behavior
-📊 Live HUD — score, combo, kills, accuracy
-💾 Persistent high-scores and lifetime stats
-🎓 Built-in tutorial and ESC pause overlay
-👥 Friends list with custom name entry
-🌌 Smooth fade transitions between every screen
-🪶 Zero dependencies — pure HTML, CSS, and ES6 modules
-🛠 Tech Stack
+1.🎮 Single-player & 2-player co-op modes.
+
+2.👾 Three event challenges — Meteor Storm, Boss Rush, Pilot Training.
+
+3.💥 Particle effects, shockwaves, screen shake, hit flash, score popups
+
+4.⚡ Power-ups, escort mini-ships, and antigravity physics
+
+5.🧠 Carrier (boss) ships with unique behavior
+
+6.📊 Live HUD — score, combo, kills, accuracy
+
+7.💾 Persistent high-scores and lifetime stats
+
+8.🎓 Built-in tutorial and ESC pause overlay
+
+9.👥 Friends list with custom name entry
+
+10.🌌 Smooth fade transitions between every screen
+
+11.🪶 Zero dependencies — pure HTML, CSS, and ES6 modules
+
+12.🛠 Tech Stack
+
 HTML5 Canvas for rendering
 Vanilla JavaScript (ES6 modules) — no frameworks
 CSS3 for the page shell
